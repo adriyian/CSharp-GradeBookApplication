@@ -113,56 +113,46 @@ namespace GradeBook.GradeBooks
             switch (letterGrade)
             {
                 case 'A':
-                    if (IsWeighted)
+                    if (IsWeightedHonorsOrDualEnrolled(studentType))
                     {
                         return 5;
                     }
-                    else
-                    {
-                        return 4;
-                    }
+                    return 4;
 
                 case 'B':
-                    if (IsWeighted)
+                    if (IsWeightedHonorsOrDualEnrolled(studentType))
                     {
                         return 4;
                     }
-                    else
-                    {
-                        return 3;
-                    }
+                    return 3;
 
                 case 'C':
-                    if (IsWeighted)
+                    if (IsWeightedHonorsOrDualEnrolled(studentType))
                     {
                         return 3;
                     }
-                    else
-                    {
-                        return 2;
-                    }
+                    return 2;
 
                 case 'D':
-                    if (IsWeighted)
+                    if (IsWeightedHonorsOrDualEnrolled(studentType))
                     {
                         return 2;
                     }
-                    else
-                    {
-                        return 1;
-                    }
+                    return 1;
 
                 case 'F':
-                    if (IsWeighted)
+                    if (IsWeightedHonorsOrDualEnrolled(studentType))
                     {
                         return 1;
                     }
-                    else
-                    {
-                        return 0;
-                    }
+                    return 0;
             }
             return 0;
+        }
+
+        private bool IsWeightedHonorsOrDualEnrolled(StudentType studentType)
+        {
+            return IsWeighted && (studentType == StudentType.DualEnrolled || studentType == StudentType.Honors);
         }
 
         public virtual void CalculateStatistics()
